@@ -1,10 +1,14 @@
 package lambda_streams;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class Animals {
     //This class will be using streams.
     static List<String> animals = Arrays.asList("peacoCK","rabbit","chiwawa","OranguTAN","vipeR","cobra","paNDa","bUffalo","DeeR","maLLard");
+
 
     public static void main(String[] args) {
         System.out.println("original animals : " + animals);
@@ -31,18 +35,40 @@ class Animals {
     }
 
     static List<String> capsFirst(List<String> animaList, boolean mutate) {
-        //clean up the animals list so that the first letter is capitalized, and all the other letters are lowercased. Use a stream to accomplish this task.  Also, the 2nd parameter of this function is a boolean.  use this boolean 'flag' to determine whether or not to 'mutate' the original animals array stored as a static class field.  if the flag is set to 'true', mutate the animals and return the animals out of the function.  if it is false, create a copy of the animals, perform your stream operations on the copy, and return the copy of animals out of the function, WITHOUT modifying the original animals array.  
+        //clean up the animals list so that the first letter is capitalized, and all the other letters are lowercased. Use a stream to accomplish this task.  Also, the 2nd parameter of this function is a boolean.  use this boolean 'flag' to determine whether or not to 'mutate' the original animals array stored as a static class field.  if the flag is set to 'true', mutate the animals and return the animals out of the function.  if it is false, create a copy of the animals, perform your stream operations on the copy, and return the copy of animals out of the function, WITHOUT modifying the original animals array.
+        if (mutate) {
+            animals = animaList.stream()
+                    .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase())
+                    .collect(Collectors.toList());
+        } else {
+            List<String> newList = animaList;
+            animals = newList.stream()
+                    .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase())
+                    .collect(Collectors.toList());
+        }
         return animals;
     }
 
     static String addAnimal(String animal) {
         //add an animal to the animal list.
+        List<String> animals1 = new ArrayList<String>(animals);
+        animals1.add(animal);
         return animal;
     };
 
 
     static List<String> lowerFirst(List<String> animaList, boolean mutate) {
         //lowercase the first letter, and uppercase the rest of the letters, using streams.  Also, depending on the value of the boolean flag 'mutate', mutate the original animals list, or perform your stream operations on a 'copy' of the animals list.  return the list out of hte function in both cases.
+        if (mutate) {
+            animals = animaList.stream()
+                    .map(s -> s.substring(0, 1).toLowerCase() + s.substring(1).toUpperCase())
+                    .collect(Collectors.toList());
+        } else {
+            List<String> newList = animaList;
+            animals = newList.stream()
+                    .map(s -> s.substring(0, 1).toLowerCase() + s.substring(1).toUpperCase())
+                    .collect(Collectors.toList());
+        }
         return animaList;
     }
 
