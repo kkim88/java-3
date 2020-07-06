@@ -28,7 +28,7 @@ class Regex {
                 matches.add(TEKmentors[i]);
             }
         }
-            System.out.println(matches);
+            System.out.println(Arrays.toString(matches));
 
 
 
