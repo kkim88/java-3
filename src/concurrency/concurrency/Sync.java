@@ -1,7 +1,8 @@
 package concurrency;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 class Sync extends Thread {
@@ -25,6 +26,7 @@ class Sync extends Thread {
         Sync syncThread = new Sync("sync thread");
         syncThread.start();
 
+        System.out.println(Arrays.toString(syncThread));
         System.out.println(syncThread.nums);
         //this prints out an empty list. write some code that will allow the data generated in the syncThread to show up  here.  There is a brute force way and a more sophisticated way.  Either or will work, but strive for sophistication :)
 
